@@ -13,3 +13,17 @@ r = [3, 2, 1]
 [output] array.integer
 permutation r
 """
+
+def findPermutation(p:list, q:list):
+    # result = []
+    # for i in q:
+    #     result.append(p.index(i)+1)
+    result = [p.index(i)+1 for i in q]
+    return result
+
+p = [3, 4, 1, 2, 5]
+q = [4, 5, 2, 3, 1]
+print(findPermutation(p, q))
+
+# [2, 5, 4, 1, 3]
+
