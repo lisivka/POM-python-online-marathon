@@ -79,7 +79,6 @@ def toPostFixExpression(e: list):
             # print("token =", token, "stack=", stack, "result =", result, )
         else:
             print(f"ERROR_TOKEN:  [{token}]")
-
     # Наконец, добавьте все оставшиеся операторы в stack в конце постфиксного выражения и верните постфиксное выражение.
     while stack:
         result += stack.pop()
