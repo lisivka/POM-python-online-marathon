@@ -1,3 +1,4 @@
+# TODO: task_1 +
 """
 For the given integer n, consider an increasing sequence consisting of all positive
 integers that are either powers of n, or sums of distinct powers of n.
@@ -31,7 +32,6 @@ Constraints:
 
 The kth element of the sequence.
 """
-
 
 def kthTerm(n, k):
     result = []

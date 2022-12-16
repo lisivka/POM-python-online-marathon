@@ -1,3 +1,4 @@
+# TODO: task_4 +
 """
 Given two permutations p and q of length n. Find a permutation r, such that for every 1 <= i <= n, q[i] = p[r[i]].
 Permutation of length n is an array consisting of distinct numbers from 1 to n in some order.

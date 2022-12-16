@@ -1,3 +1,4 @@
+# TODO: task_6 +
 """
 Write a program that given an array of integers determines if it is sorted in "ascending" order,
 "descending" order or "not sorted" at all.
