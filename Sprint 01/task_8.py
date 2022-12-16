@@ -1,4 +1,5 @@
 # TODO: task_8 +
+
 """
 's3ooOOooDy' has exams. He wants to study hard this time.
 He has an array of studying hours per day for the previous exams.
@@ -22,16 +23,14 @@ def studying_hours(a):
     for i in range(1, len(a)):
         if a[i] >= a[i - 1]:
             count += 1
-            print(a[i], ">=", a[i - 1], "+1", count)
-
-
+            # print(a[i], ">=", a[i - 1], "+1", count)
         else:
-            print("=======", count)
+            # print("=======", count)
             result.append(count)
             count = 1
     result.append(count)
 
-    print(result)
+    # print(result)
     return max(result)
 
 

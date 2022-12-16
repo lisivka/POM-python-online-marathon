@@ -1,4 +1,5 @@
-# TODO: task_3 + 
+# TODO: task_3 +
+
 """Given a string, check if its characters can be rearranged to form a palindrome.
 Where a palindrome is a string that reads the same left-to-right and right-to-left.
 

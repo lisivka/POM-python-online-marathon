@@ -22,13 +22,13 @@ For N = "565", the output should be
 Cipher_Zeroes(N) = 10.
 
 There's one visible zero in "565". Since one is odd, the company will give an additional point, so Nicky will receive 2 points.
-210 = 102, so the output should be 10.
+2(10) = 1(02), so the output should be 10. (Десятичні переводимо у двійкові)
 
 Input/Output
 [input] string N
 The number of points Dev received this month.
 Constraints:
-1 ≤ N ≤ 101000.
+1 ≤ N ≤ 10**1000.
 [output] integer
 The number of points Nicky will receive in the binary representation.
 
