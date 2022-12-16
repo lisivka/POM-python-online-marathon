@@ -1,4 +1,4 @@
-# TODO: task_7
+# TODO: task_7 +
 
 """
 Nicky and Dev work in a company where each member is given his income in the form of points.
@@ -52,4 +52,4 @@ def Cipher_Zeroes(N: int):
 
 
 N = "565"
-print(Cipher_Zeroes(N))
+print(Cipher_Zeroes(N)) #10
