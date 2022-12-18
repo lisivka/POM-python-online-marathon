@@ -33,6 +33,7 @@ def morse_number(n: str):
     return morse_str
 
 
+
 print(morse_number("295"))
 print(morse_number("005"))
 print(morse_number("513"))
