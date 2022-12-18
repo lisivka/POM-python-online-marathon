@@ -21,22 +21,14 @@ def double_string(data: list):
     data_set=set(data)
     for i in data_set:
         for j in data_set:
-            if unit + unit in data:
-                counter += data.count(unit + unit)
+            if i + j in data:
+                print(data.count(i + j),counter)
+                counter += data.count(i + j)
 
-    data_set = [i+j  for i in data]
-    print(data_set)
-    for unit in data:
-        if unit + unit in data:
-            print(unit)
-            counter += data.count(unit + unit)
-
-    # counter_list = [data.count(unit+unit) for unit in data if unit+unit in data]
-    # print(counter_list)
     return counter
-    # return sum(counter_list)
 
 
-# data = ['aa', 'aaaa', 'aaaaaaaa', 'aaaa', 'qwer', 'qwerqwert']
-data = ['aa', 'aaaa', 'aaaaaaaa', 'aaaa', 'qwer', 'qweraaaa']
+
+data = ['aa', 'aaaa', 'aaaaaaaa', 'aaaa', 'qwer', 'qwerqwert']
+# data = ['aa', 'aaaa', 'aaaaaaaa', 'aaaa', 'qwer', 'qweraaaa']
 print(double_string(data))
