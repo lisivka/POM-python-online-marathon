@@ -22,11 +22,33 @@ onetwo
 """
 
 
-def logger():
-    pass
+def logger(func):
+    def args_kwargs(*args, **kwargs):
+        lst_arg = [str(element) for element in args]
+        lst_kwargs =[str(value) for key, value in kwargs.items()]
+        argumets = ", ".join(lst_arg) + ", ".join(lst_kwargs)
+        # concated = ""
+        # for key, value in kwargs.items():
+        #     concated += str(value)
 
-def concat():
-    pass
+        print(f"Executing of function {func.__name__} with arguments {lst_arg}...", end=" ")
+        print(f"Executing of function {func.__name__} with arguments {argumets}...", end=" ")
+        return
+
+    # print(f"Executing of function {func.__name__} with arguments ""...", end=" ")
+
+    return args_kwargs
+
+
+@logger
+def concat(*args, **kwargs):
+    concated = ""
+    for element in args:
+        concated += str(element)
+    for key, value in kwargs.items():
+        concated += str(value)
+        return concated
+
 
 @logger
 def sum(a, b):
@@ -37,6 +59,8 @@ def sum(a, b):
 def print_arg(arg):
     print(arg)
 
+
+print(concat(2, 3))
 
 # print(concat(1))
 # Executing of function concat with arguments 1...
