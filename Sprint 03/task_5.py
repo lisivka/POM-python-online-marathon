@@ -20,3 +20,41 @@ print(concat (first = 'one', second = 'two')) display
 Executing of function concat with arguments one, two...
 onetwo
 """
+
+
+def logger():
+    pass
+
+def concat():
+    pass
+
+@logger
+def sum(a, b):
+    return a + b
+
+
+@logger
+def print_arg(arg):
+    print(arg)
+
+
+# print(concat(1))
+# Executing of function concat with arguments 1...
+# 1
+# None
+# print(concat('first string', second = 2, third = 'second string'))
+# Executing of function concat with arguments first string, 2, second string...
+# first string2second string
+# None
+# print(concat('first string', {'first kwarg' :0, 'second kwarg': 'second kwarg'}))
+# Executing of function concat with arguments first string, {'first kwarg': 0, 'second kwarg': 'second kwarg'}...
+# first string{'first kwarg': 0, 'second kwarg': 'second kwarg'}
+# None
+# print(sum(2,3))
+# Executing of function sum with arguments 2, 3...
+# 5
+# ***Run error***
+# Traceback (most recent call last):
+#   File "__tester__.python3", line 31, in <module>
+#     print(sum(2,3))
+# TypeError: 'NoneType' object is not callable
