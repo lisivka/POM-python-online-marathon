@@ -83,7 +83,3 @@ print(concat('first string', second=2, third='second string'))
 #     print(sum(2,3))
 # TypeError: 'NoneType' object is not callable
 
-
-# a ="Executing of function concat with arguments first string, 2, second string...first string2second string"
-# b ="Executing of function concat with arguments first string2, second string...
-# first string2second string"
