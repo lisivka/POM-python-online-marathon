@@ -31,9 +31,11 @@ tom("Qwerty1_",  ["word", "12"]) return True
 tom("Qwerty1!",  ["word", "1"]) return False because "Qwerty1!" not equals to "Qwerty1_"
 """
 
+import re
+
 
 def create_account(user_name: str, password: str, secret_words: list):
-    def equalsWord(words, secret_words):
+    def equalsWord(words, secret_words): # secret_words may be misspelled (just one element)
         k = len(secret_words)
 
         for word in secret_words:
@@ -49,31 +51,37 @@ def create_account(user_name: str, password: str, secret_words: list):
         elif pswrd != password:
             # print("pswrd_check", pswrd,"!=",password)
             return False
-        elif equalsWord(words, secret_words):
-
-            return True
         else:
-            # print("Not equals", words, secret_words)
-            return False
+            # print("equalsWord = ", equalsWord(words, secret_words))
+            return equalsWord(words, secret_words)
 
-    # print("".join(secret_words))
-    lnPassword = len(password) >= 6
-    notUpper = not password.isupper()
-    notLower = not password.islower()
-    notAlpha = not password.isalpha()
-    notAlNum = not password.isalnum()
-
-    # print("lnPassword", lnPassword)
-    # print("notLower", notLower)
-    # print("notUpper", notUpper)
-    # print("notAlpha", notAlpha)
-    # print("notNum", notAlNum)
-    # print(lnPassword and notLower and notUpper and notAlpha and notAlNum)
-
-    if lnPassword and notLower and notUpper and notAlpha and notAlNum:
+    pattern = r"(?=.*[0-9])(?=.*[_!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z_!@#$%^&*]{6,}"
+    if re.findall(pattern, password):
         return check
     else:
         raise ValueError
+
+
+##===Update 2022-12-22 ====================================================
+# print("".join(secret_words))
+# lnPassword = len(password) >= 6
+# notUpper = not password.isupper()
+# notLower = not password.islower()
+# notAlpha = not password.isalpha()
+# notAlNum = not password.isalnum()
+
+# print("lnPassword", lnPassword)
+# print("notLower", notLower)
+# print("notUpper", notUpper)
+# print("notAlpha", notAlpha)
+# print("notNum", notAlNum)
+# print(lnPassword and notLower and notUpper and notAlpha and notAlNum)
+
+# if lnPassword and notLower and notUpper and notAlpha and notAlNum:
+# #     return check
+# else:
+# raise ValueError
+##===============================================================
 
 
 if __name__ == '__main__':
