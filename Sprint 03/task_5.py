@@ -27,13 +27,11 @@ def logger(func):
         lst_arg = [str(element) for element in args]
         lst_kwargs =[str(value) for key, value in kwargs.items()]
         argumets = ", ".join(lst_arg) + ", ".join(lst_kwargs)
-        # concated = ""
-        # for key, value in kwargs.items():
-        #     concated += str(value)
+        recursive_func = func(*args, **kwargs)
 
-        print(f"Executing of function {func.__name__} with arguments {lst_arg}...", end=" ")
-        print(f"Executing of function {func.__name__} with arguments {argumets}...", end=" ")
-        return
+        # print(f"Executing of function {func.__name__} with arguments {lst_arg}...", end=" ")
+        print(f"Executing of function {func.__name__} with arguments {argumets}...", end="\n")
+        return recursive_func
 
     # print(f"Executing of function {func.__name__} with arguments ""...", end=" ")
 
@@ -47,7 +45,7 @@ def concat(*args, **kwargs):
         concated += str(element)
     for key, value in kwargs.items():
         concated += str(value)
-        return concated
+    return concated
 
 
 @logger
@@ -61,16 +59,19 @@ def print_arg(arg):
 
 
 print(concat(2, 3))
-
-# print(concat(1))
+print(sum(2, 3))
+print(concat('hello', 2))
+print(concat (first = 'one', second = 'two'))
+print("------------------")
+print(concat(1))
 # Executing of function concat with arguments 1...
 # 1
 # None
-# print(concat('first string', second = 2, third = 'second string'))
+print(concat('first string', second = 2, third = 'second string'))
 # Executing of function concat with arguments first string, 2, second string...
 # first string2second string
 # None
-# print(concat('first string', {'first kwarg' :0, 'second kwarg': 'second kwarg'}))
+print(concat('first string', {'first kwarg' :0, 'second kwarg': 'second kwarg'}))
 # Executing of function concat with arguments first string, {'first kwarg': 0, 'second kwarg': 'second kwarg'}...
 # first string{'first kwarg': 0, 'second kwarg': 'second kwarg'}
 # None
