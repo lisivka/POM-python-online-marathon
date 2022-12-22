@@ -33,16 +33,47 @@ tom("Qwerty1!",  ["word", "1"]) return False because "Qwerty1!" not equals to "Q
 
 
 def create_account(user_name: str, password: str, secret_words: list):
-    def check(password_check: str, secret_words_check: list):
-        if password_check == password:
-            print("password = ", True)
+    def equalsWord(words, secret_words):
+        k = len(secret_words)
 
-        if secret_words_check != secret_words:
-            # print("No secret w",True, secret_words_check)
+        for word in secret_words:
+            if word in words:
+                k -= 1
+                words.remove(word)
+        return True if k == 1 or k == 0 else False
+
+    def check(pswrd: str, words: list):
+        if len(words) != len(secret_words):
+            # print("LEN", words, secret_words)
             return False
+        elif pswrd != password:
+            # print("pswrd_check", pswrd,"!=",password)
+            return False
+        elif equalsWord(words, secret_words):
+
+            return True
         else:
-            return "Check"
-    return check
+            # print("Not equals", words, secret_words)
+            return False
+
+    # print("".join(secret_words))
+    lnPassword = len(password) >= 6
+    notUpper = not password.isupper()
+    notLower = not password.islower()
+    notAlpha = not password.isalpha()
+    notAlNum = not password.isalnum()
+
+    # print("lnPassword", lnPassword)
+    # print("notLower", notLower)
+    # print("notUpper", notUpper)
+    # print("notAlpha", notAlpha)
+    # print("notNum", notAlNum)
+    # print(lnPassword and notLower and notUpper and notAlpha and notAlNum)
+
+    if lnPassword and notLower and notUpper and notAlpha and notAlNum:
+        return check
+    else:
+        raise ValueError
 
 
 if __name__ == '__main__':
@@ -51,8 +82,10 @@ if __name__ == '__main__':
     print(check1)
     check2 = tom("Qwerty1_", ["word"])
     print(check2)
-    # check3 = tom("Qwerty1_", ["word", "2"])
-    # check4 = tom("Qwerty1!", ["word", "12"])
+    check3 = tom("Qwerty1_", ["word", "2"])
+    print("ch3 = ", check3)
+    check4 = tom("Qwerty1!", ["word", "12"])
+    print(check4)
 
     # val1 = create_account("123", "qQ1!45", initial_arr)
     # print(val1("qQ1!45", checked_arr_1_true))
@@ -134,7 +167,7 @@ if __name__ == '__main__':
     #     print("Raises ValueError")
     # Raises
     # ValueError
-    # simple_user = create_account("A", "Aa!190", ["word"])
-    # print(simple_user("Aa!190", ["word"]))
+    simple_user = create_account("A", "Aa!190", ["word"])
+    print(simple_user("Aa!190", ["word"]))
     # True
     # True
