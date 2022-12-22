@@ -25,9 +25,9 @@ onetwo
 def logger(func):
     def args_kwargs(*args, **kwargs):
         lst_arg = [str(element) for element in args]
-        lst_kwargs = [str(value) for key, value in kwargs.items()]
+        lst_kwargs = [str(value) for value in kwargs.values()]
         comma = ", " if lst_arg and lst_kwargs else ""
-        arguments = ", ".join(lst_arg) +comma+ ", ".join(lst_kwargs)
+        arguments = ", ".join(lst_arg) + comma + ", ".join(lst_kwargs)
         recursive_func = func(*args, **kwargs)
 
         # print(f"Executing of function {func.__name__} with arguments {lst_arg}...", end=" ")
@@ -42,7 +42,7 @@ def logger(func):
 @logger
 def concat(*args, **kwargs):
     lst_arg = [str(element) for element in args]
-    lst_kwargs = [str(value) for key, value in kwargs.items()]
+    lst_kwargs = [str(value) for value in kwargs.values()]
     arguments = "".join(lst_arg) + "".join(lst_kwargs)
     return arguments
 
@@ -56,30 +56,39 @@ def sum(a, b):
 def print_arg(arg):
     print(arg)
 
+if __name__ == "__main__":
+    print(concat(2, 3))
+    print(sum(2, 3))
+    print(concat('hello', 2))
+    print(concat(first='one', second='two'))
+    print("------------------")
+    print(concat(1))
+    # Executing of function concat with arguments 1...
+    # 1
+    # Executing of function concat with arguments 1...
+    # 1
+    print(concat('first string', second = 2, third = 'second string'))
+    # Executing of function concat with arguments first string, 2, second string...
+    # first string2second string
+    # Executing of function concat with arguments first string, 2, second string...
+    # first string2second string
+    print(concat('first string', {'first kwarg' :0, 'second kwarg': 'second kwarg'}))
+    # Executing of function concat with arguments first string, {'first kwarg': 0, 'second kwarg': 'second kwarg'}...
+    # first string{'first kwarg': 0, 'second kwarg': 'second kwarg'}
+    # Executing of function concat with arguments first string, {'first kwarg': 0, 'second kwarg': 'second kwarg'}...
+    # first string{'first kwarg': 0, 'second kwarg': 'second kwarg'}
 
-print(concat(2, 3))
-print(sum(2, 3))
-print(concat('hello', 2))
-print(concat(first='one', second='two'))
-print("------------------")
-print(concat(1))
-# Executing of function concat with arguments 1...
-# 1
-# None
-print(concat('first string', second=2, third='second string'))
-# Executing of function concat with arguments first string, 2, second string...
-# first string2second string
-# None
-# print(concat('first string', {'first kwarg' :0, 'second kwarg': 'second kwarg'}))
-# Executing of function concat with arguments first string, {'first kwarg': 0, 'second kwarg': 'second kwarg'}...
-# first string{'first kwarg': 0, 'second kwarg': 'second kwarg'}
-# None
-# print(sum(2,3))
-# Executing of function sum with arguments 2, 3...
-# 5
-# ***Run error***
-# Traceback (most recent call last):
-#   File "__tester__.python3", line 31, in <module>
-#     print(sum(2,3))
-# TypeError: 'NoneType' object is not callable
-
+    # print(sum(2,3))
+    # Executing of function sum with arguments 2, 3...
+    # 5
+    # Executing of function sum with arguments 2, 3...
+    # 5
+    dict_args={'first kwarg' :0, 'second kwarg': 'second kwarg'}
+    concat(**dict_args)
+    # Executing of function concat with arguments 0, second kwarg...
+    # Executing of function concat with arguments 0, second kwarg...
+    # print_arg(2)
+    # 2
+    # Executing of function print_arg with arguments 2...
+    # 2
+    # Executing of function print_arg with arguments 2...
