@@ -12,7 +12,7 @@ For example:
 """
 
 
-def create(s):
+def create(s: str):
     return lambda x: x == s
 
 

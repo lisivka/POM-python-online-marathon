@@ -26,8 +26,7 @@ def logger(func):
     def args_kwargs(*args, **kwargs):
         lst_arg = [str(element) for element in args]
         lst_kwargs = [str(value) for value in kwargs.values()]
-        comma = ", " if lst_arg and lst_kwargs else ""
-        arguments = ", ".join(lst_arg) + comma + ", ".join(lst_kwargs)
+        arguments = ", ".join(lst_arg+lst_kwargs)
         recursive_func = func(*args, **kwargs)
 
         # print(f"Executing of function {func.__name__} with arguments {lst_arg}...", end=" ")
@@ -43,7 +42,7 @@ def logger(func):
 def concat(*args, **kwargs):
     lst_arg = [str(element) for element in args]
     lst_kwargs = [str(value) for value in kwargs.values()]
-    arguments = "".join(lst_arg) + "".join(lst_kwargs)
+    arguments = "".join(lst_arg+lst_kwargs)
     return arguments
 
 
