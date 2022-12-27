@@ -1,0 +1,1 @@
+alert("I LOVE JS");
