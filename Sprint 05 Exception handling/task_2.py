@@ -26,26 +26,23 @@ import re
 def valid_email(email: str) -> str:
     pattern = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
     try:
-        answer = f"Email is not valid" if re.match(pattern, email) is None else f"Email is valid"
+        return f"Email is not valid" if re.match(pattern, email) is None else f"Email is valid"
     except (TypeError,):
-        answer = f"Email is not valid"
-    finally:
-        return answer
+        return f"Email is not valid"
+    # finally:
+    #     return answer
 
 
 if __name__ == "__main__":
     print(valid_email(1222))
+    # Email is not valid
     print(valid_email("probaggdf@gmail.hhh.com"))
     # Email is valid
-
     print(valid_email("example@source_arth.com"))
     # Email is not valid
-
     print(valid_email("exam@ple@sourcepath.com"))
     # Email is not valid
-
     print(valid_email("examplesource_arth.com"))
     # Email is not valid
-
     print(valid_email("example@source.ua"))
     # Email is valid
