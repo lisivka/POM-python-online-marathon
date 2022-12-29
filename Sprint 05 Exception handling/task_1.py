@@ -20,7 +20,7 @@ divide_number("abc", 9)  #output:    "Value Error! You did not enter a number!"
 
 def divide(numerator, denominator):
     try:
-        numerator / denominator
+        # numerator / denominator
         return f"Result is {numerator / denominator}"
     except ZeroDivisionError:
         return f"Oops, {numerator}/{denominator}, division by zero is error!!!"
