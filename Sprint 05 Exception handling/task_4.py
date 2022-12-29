@@ -16,16 +16,41 @@ day_of_week(11)                     # output:  "There is no such day of the week
 day_of_week("Monday")       # output:   "You did not enter a number! Please try again."""
 
 
-def day_of_week(day):
+def day_of_week(day: int):
     try:
-        week = ["There is no such day of the week! Please try again.",
+        week = [None,
                 "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", ]
         if 1 <= int(day) <= 7:
             return week[int(day)]
         else:
-            return week[0]
-    except BaseException:
+            return f"There is no such day of the week! Please try again."
+    except (TypeError, ValueError):
         return f"You did not enter a number! Please try again."
 
 
-print(day_of_week(2))
+if __name__ == "__main__":
+    print(day_of_week(2))
+
+    print(day_of_week(5))
+    # Friday
+
+    print(day_of_week(1))
+    # Monday
+
+    print(day_of_week(0))
+    # There is no such day of the week! Please try again.
+
+    print(day_of_week(-9))
+    # There is no such day of the week! Please try again.
+
+    print(day_of_week("Sunday"))
+    # You did not enter a number! Please try again.
+
+    print(day_of_week("6"))
+    # Saturday
+
+    print(day_of_week("9"))
+    # There is no such day of the week! Please try again.
+    print(day_of_week(10 / 2))
+    print(day_of_week("5"))
+    print(day_of_week("5.1"))

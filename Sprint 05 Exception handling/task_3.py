@@ -17,30 +17,31 @@ check_positive ("abc")  #output:     "Error type: ValueError!"
 
 
 class MyError(Exception):
-    def __init__(self, data):
-        self.data = data
+    def __init__(self, number):
+        self.number = number
 
     def __str__(self):
-        return ''.join(self.data)
+        return f"You input negative number: {float(self.number)}. Try again."
 
 
 def check_positive(number):
     try:
-        if float(number) >= 0:
-            # return f"You input positive number: {float(number)}"
-            raise MyError([f"You input positive number: ", f"{float(number)}"])
-        if float(number) < 0:
-            raise MyError([f"You input negative number: ", f"{str(float(number))}. ", f"Try again."])
+        if float(number) > 0:
+            return f"You input positive number: {float(number)}"
+        elif float(number) < 0:
+            raise MyError(number)
+        else:
+            return f"Error type: ValueError!"
     except MyError as e:
         return e
-    except BaseException:
+
+    except (TypeError, ValueError):
         return f"Error type: ValueError!"
-    # except (MyError, BaseException) as e:
-    #     return f"Error type: ValueError!"
 
 
 if __name__ == "__main__":
-    print(check_positive(24))
+    # print(check_positive(0))
+    # print(check_positive(24))
 
     print(check_positive(8.9))
     # You input positive number: 8.9
