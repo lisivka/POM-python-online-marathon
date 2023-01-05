@@ -57,7 +57,7 @@ schema_user = {
 
 schema_department = {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "departament",
+    "title": "department",
     "type": "array",
     "items": {
         "type": "object",
@@ -70,12 +70,13 @@ schema_department = {
 }
 
 
-def validate_json(data, schema):
-    try:
-        validate(instance=data, schema=schema)
+class InvalidInstanceError(Exception):
 
-    except BaseException:
-        print(f"InvalidInstanceError {schema['title']} ")
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f'Error in {self.name} schema'
 
 
 class DepartmentName(Exception):
@@ -83,30 +84,73 @@ class DepartmentName(Exception):
         self.dep_id = dep_id
 
     def __str__(self):
-        return f"DepartmentName={self.dep_id}"
+        return f"Department with id {self.dep_id} doesn't exists"
+
+
+def validate_json(data, schema):
+    try:
+        validate(instance=data, schema=schema)
+
+    except jsonschema.exceptions.ValidationError:
+        raise InvalidInstanceError(f"{schema['title']}")
 
 
 def save_csv(csv_file, data):
     header = ["name", "department"]
-    header = ["id", "name", ]
-    with open(csv_file, 'w') as csvfile:
+
+    with open(csv_file, 'w', newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=header)
         writer.writeheader()
         writer.writerows(data)
 
 
+def get_user_departament(data: list, dep_id: int):
+    dep_name = None
+    for dep in data:
+        if dep['id'] == dep_id:
+            dep_name = dep["name"]
+    return dep_name
+
+
 def user_with_department(csv_file, user_json, department_json):
     user_data = load_json(user_json)
     dep_data = load_json(department_json)
-    print(dep_data)
+    new_dict = []
+    validate_json(user_data, schema_user)
+    validate_json(dep_data, schema_department)
 
-    save_csv(csv_file, dep_data)
+    for user in user_data:
+        dep_name = get_user_departament(dep_data, user["department_id"])
+        if dep_name is None:
+            raise DepartmentName(user["department_id"])
+        new_dict.append({"name": user["name"], "department": dep_name})
+
+    save_csv(csv_file, new_dict)
 
     return
 
 
 if __name__ == "__main__":
+
+    ## ========================================
     try:
         user_with_department("user_department.csv", "user_without_dep.json", "department.json")
     except DepartmentName as e:
+        print(str(e))
+
+    ## ========================================
+    user_with_department("user_department.csv", "user.json", "department.json")
+    ## print_file("user_department.csv")
+
+    ## ========================================
+    try:
+        user_with_department("user_department.csv", "user_without_dep_id.json", "department.json")
+    except InvalidInstanceError as e:
+        print(str(e))
+
+    ## ========================================
+
+    try:
+        user_with_department("user_department.csv", "user.json", "department_without_id.json")
+    except InvalidInstanceError as e:
         print(str(e))
