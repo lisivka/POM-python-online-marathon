@@ -22,5 +22,5 @@ def serialize(object, filename, fileType):
         manager.serialize(object)
 
 
-print(isinstance(serialize.__globals__['SerializeManager'], object))
-True
+# print(isinstance(serialize.__globals__['SerializeManager'], object))
+# True

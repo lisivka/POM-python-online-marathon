@@ -17,6 +17,7 @@ import json
 from json import JSONEncoder
 
 
+
 class StudentEncoder(JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Student):
@@ -118,8 +119,8 @@ if __name__ == "__main__":
     # # #                 "courses": ["Ruby", "Python", "Frontend development"]}]},
     # # #  {"title": "2020-01", "students": [{"full_name": "Student2 from group2", "avg_rank": 50.4, "courses": ["C++"]}]}]
 
-    # g1 = Group.create_group_from_file("2020_2.json")
-    # print(g1)
+    g1 = Group.create_group_from_file("2020_2.json")
+    print(g1)
     # 2020_2: ["Student 1 from second Group (98): ['Python']",
     #          "Student 2 from second Group (70.34): ['Ruby', 'Python', 'Frontend development']"]
 
