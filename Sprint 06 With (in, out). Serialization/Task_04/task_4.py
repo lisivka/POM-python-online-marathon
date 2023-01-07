@@ -30,6 +30,9 @@ class Student:
         self.avg_rank = avg_rank
         self.courses = courses
 
+    def __str__(self):
+        return f"{self.full_name} ({self.avg_rank}): {self.courses}"
+
     @classmethod
     def from_json(cls, json_file):
         with open(json_file) as f:
@@ -42,28 +45,22 @@ class Student:
         with open(filename, "w") as f:
             json.dump(cls.__dict__, f, indent=None)
 
-    def __str__(self):
-        return f"{self.full_name} ({self.avg_rank}): {self.courses}"
-
 
 class Group:
     def __init__(self, title: str, students: list):
         self.title = title
         self.students = students
 
+    def __str__(self):
+        return f"{self.title}: {list(map(str, self.students))}"
+
     @staticmethod
     def serialize_to_json(list_of_groups, filename):
         with open(filename, "w") as f:
-            a = [x.__dict__ for x in list_of_groups]
-            return json.dump(a, f, indent=None, cls=StudentEncoder)
-
-    # @classmethod
-    # def create_group_from_file(cls, json_file):
-    #     with open(folder + json_file) as f:
-    #         data = json.load(f)
-    #         # title, _ = json_file.split(".")
-    #         title = json_file[:-5]
-    #         return cls(title, data)
+            groups = [group.__dict__ for group in list_of_groups]
+            # print('========',groups)
+            # return json.dump(groups, f, indent=None, default=lambda x: x.__dict__ )
+            return json.dump(groups, f, indent=None, cls=StudentEncoder)
 
     @classmethod
     def create_group_from_file(cls, json_file):
@@ -76,8 +73,13 @@ class Group:
             title = json_file[:-5]
             return cls(title, students)
 
-    def __str__(self):
-        return f"{self.title}: {list(map(str, self.students))}"
+    # @classmethod
+    # def create_group_from_file(cls, json_file):
+    #     with open(json_file) as f:
+    #         data = json.load(f)
+    #         # title, _ = json_file.split(".")
+    #         title = json_file[:-5]
+    #         return cls(title, data)
 
 
 if __name__ == "__main__":
@@ -116,11 +118,11 @@ if __name__ == "__main__":
     # # #                 "courses": ["Ruby", "Python", "Frontend development"]}]},
     # # #  {"title": "2020-01", "students": [{"full_name": "Student2 from group2", "avg_rank": 50.4, "courses": ["C++"]}]}]
 
-    g1 = Group.create_group_from_file("2020_2.json")
-    print(g1)
+    # g1 = Group.create_group_from_file("2020_2.json")
+    # print(g1)
     # 2020_2: ["Student 1 from second Group (98): ['Python']",
     #          "Student 2 from second Group (70.34): ['Ruby', 'Python', 'Frontend development']"]
 
-    g2 = Group.create_group_from_file("2020-01.json")
-    print(g2)
+    # g2 = Group.create_group_from_file("2020-01.json")
+    # print(g2)
     # 2020 - 01: ["Student2 from group2 (50.4): ['C++']"]
