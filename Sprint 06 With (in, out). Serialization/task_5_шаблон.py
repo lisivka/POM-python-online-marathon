@@ -37,7 +37,6 @@ class SerializeManager:
         print("_serialize_")
         json.dump(object, self.file)
 
-
     def __exit__(self, exc_type, exc_val, exc_tb):
         print("__exit__")
         self.file.close()
@@ -50,7 +49,6 @@ class FileType(Enum):
 def serialize(object, filename, fileType):
     with SerializeManager(filename, fileType) as manager:
         manager.serialize(object)
-
 
 
 if __name__ == "__main__":
