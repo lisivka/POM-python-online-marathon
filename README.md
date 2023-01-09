@@ -1,8 +1,8 @@
-Python Online Marathon 2022
+#Python Online Marathon 2022
 Start 2022-12-12
-Sprint 0. Self preparation
-Sprint 01. Introduction to Programming with Python.
-Sprint 02. String. Regular Expressions
+###Sprint 0. Self preparation
+###Sprint 01. Introduction to Programming with Python.
+###Sprint 02. String. Regular Expressions
 Sprint 03. Functions
 Sprint 04. Python OOP
 Sprint 05. Exception handling
