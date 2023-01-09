@@ -3,9 +3,9 @@ Start 2022-12-12
 ###Sprint 0. Self preparation###
 ###Sprint 01. Introduction to Programming with Python.###
 ###Sprint 02. String. Regular Expressions###
-Sprint 03. Functions
-Sprint 04. Python OOP
-Sprint 05. Exception handling
+* Sprint 03. Functions
+* Sprint 04. Python OOP
+* Sprint 05. Exception handling
 Sprint 06. With (in, out). Serialization
 Sprint 07. Design Patterns in Python
 Sprint 08. Unittest and pytest
