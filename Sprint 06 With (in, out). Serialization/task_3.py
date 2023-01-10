@@ -134,23 +134,23 @@ if __name__ == "__main__":
 
     ## ========================================
     try:
-        user_with_department("user_department.csv", "user_without_dep.json", "department.json")
+        user_with_department("Test_data/user_department.csv", "user_without_dep.json", "department.json")
     except DepartmentName as e:
         print(str(e))
 
     ## ========================================
-    user_with_department("user_department.csv", "user.json", "department.json")
+    user_with_department("Test_data/user_department.csv", "user.json", "department.json")
     ## print_file("user_department.csv")
 
     ## ========================================
     try:
-        user_with_department("user_department.csv", "user_without_dep_id.json", "department.json")
+        user_with_department("Test_data/user_department.csv", "user_without_dep_id.json", "department.json")
     except InvalidInstanceError as e:
         print(str(e))
 
     ## ========================================
 
     try:
-        user_with_department("user_department.csv", "user.json", "department_without_id.json")
+        user_with_department("Test_data/user_department.csv", "user.json", "department_without_id.json")
     except InvalidInstanceError as e:
         print(str(e))

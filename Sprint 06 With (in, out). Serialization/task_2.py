@@ -32,12 +32,12 @@ then file user3.json should contain information:
 import json
 import logging
 
-logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='Test_data/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 
 def load_json(file):
-    # folder = "Test_data/"
-    folder = ""
+    folder = "Test_data/"
+    # folder = ""
     try:
         with open(folder + file, encoding='utf-8') as json_file:
             data = json.load(json_file)

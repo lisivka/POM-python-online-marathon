@@ -21,30 +21,35 @@ import pickle
 from enum import Enum
 
 
-# // type your code here
 class SerializeManager:
     def __init__(self, file_name, file_type):
         self.file_name = file_name
         self.file_type = file_type
-        # self.file = None
 
     def __enter__(self):
-        print("__enter__")
-        self.file = open(self.file_name, 'w')
+        mode = self.file_type.mode
+        self.file = open(self.file_name, mode)
         return self
 
     def serialize(self, object):
-        print("_serialize_")
-        json.dump(object, self.file)
-
+        modul = self.file_type.modul
+        modul.dump(object, self.file)
+        # if self.file_type == FileType.JSON:
+        #     json.dump(object, self.file)
+        # elif self.file_type == FileType.BYTE:
+        #     pickle.dump(object, self.file)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print("__exit__")
         self.file.close()
 
 
 class FileType(Enum):
-    JSON = "json"
+    JSON = (json, "w")
+    BYTE = (pickle, "wb")
+
+    def __init__(self, modul, mode):
+        self.modul = modul
+        self.mode = mode
 
 
 def serialize(object, filename, fileType):
@@ -52,15 +57,24 @@ def serialize(object, filename, fileType):
         manager.serialize(object)
 
 
-
 if __name__ == "__main__":
-    # print(isinstance(serialize.__globals__['SerializeManager'], object))
+    print(isinstance(serialize.__globals__['SerializeManager'], object))
     # # True
-    # print(issubclass(FileType, Enum))
+    # print("===================")
+    print(issubclass(FileType, Enum))
     # # True
-
+    print("===================")
     from os import path
 
-    # print(str(path.exists('1')))
+    print(str(path.exists('1.json')))
     serialize("String", "1.json", FileType.JSON)
-    print(str(path.exists('1')))
+    print(str(path.exists('1.json')))
+    # True
+    # True
+
+    print("===================")
+    user_dict = {"name": "Hallo", "id": 2}
+    serialize(user_dict, "2.txt", FileType.BYTE)
+    with open("2.txt", "rb") as file:
+        print(pickle.load(file))
+    ## {'name': 'Hallo', 'id': 2}
