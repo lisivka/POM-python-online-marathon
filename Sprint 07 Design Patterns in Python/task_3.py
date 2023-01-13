@@ -19,6 +19,8 @@ img_1.png
 '''
 
 
+# https://www.geeksforgeeks.org/adapter-method-python-design-patterns/
+
 class MotorCycle:
     """Class for MotorCycle"""
 
@@ -33,11 +35,23 @@ class MotorCycle:
 
 
 class Truck:
-    pass
+    """Class for Truck"""
+
+    def __init__(self):
+        self.name = "Truck"
+
+    def EightWheeler(self):
+        return "EightWheeler"
 
 
 class Car:
-    pass
+    """Class for Car"""
+
+    def __init__(self):
+        self.name = "Car"
+
+    def FourWheeler(self):
+        return "FourWheeler"
 
 
 class Adapter:
@@ -50,32 +64,40 @@ class Adapter:
 
     def __init__(self, obj, **adapted_methods):
         """We set the adapted methods in the object's dict"""
-
-        pass
+        self.obj = obj
+        self.__dict__.update(adapted_methods)
 
     def __getattr__(self, attr):
         """All non-adapted calls are passed to the object"""
 
-        pass
+        return getattr(self.obj, attr)
 
     def original_dict(self):
         """Print original object dict"""
-
-        pass
+        return self.obj.__dict__
 
 
 if __name__ == "__main__":
-
     objects = []
     motorCycle = MotorCycle()
     objects.append(Adapter(motorCycle, wheels=motorCycle.TwoWheeler))
-    print(motorCycle.__dict__, motorCycle.TwoWheeler())
-    # truck = Truck()
-    # objects.append(Adapter(truck, wheels=truck.EightWheeler))
-    # car = Car()
-    # objects.append(Adapter(car, wheels=car.FourWheeler))
+
+    truck = Truck()
+    objects.append(Adapter(truck, wheels=truck.EightWheeler))
+
+    car = Car()
+    objects.append(Adapter(car, wheels=car.FourWheeler))
+
     for obj in objects:
         print("A {0} is a {1} vehicle".format(obj.name, obj.wheels()))
+
     # A MotorCycle is a TwoWheeler vehicle
     # A Truck is a EightWheeler vehicle
     # A Car is a FourWheeler vehicle
+    print("========================")
+    print(objects)
+    print(objects[0].name)
+    print(objects[0].wheels())
+    print("__________", motorCycle.__dict__, motorCycle.TwoWheeler())
+    print("__________", truck.__dict__, truck.EightWheeler())
+    print("__________", car.__dict__, car.FourWheeler())

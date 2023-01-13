@@ -8,23 +8,22 @@ Please, solve the above-described problem in an efficient way.
 Our actual class should store the reference to one of the strategy function.
 
 You have the structure of your future application in the answer box preload.
-
-
 """
 
+
+# https://www.geeksforgeeks.org/strategy-method-python-design-patterns/
 
 class Goods:
 
     def __init__(self, price, discount_strategy=None):
         self.price = price
         self.discount_strategy = discount_strategy
-        self.discount = 0
-        pass
 
     def price_after_discount(self):
-        # if self.discount_strategy == None: self.discount = 0
-        # if self.discount_strategy == twenty_percent_discount: self.discount = self.price * 0.2
-        # if self.discount_strategy == on_sale_discount:        self.discount = self.price * 0.5
+        if self.discount_strategy:
+            self.discount = self.discount_strategy(self)
+        else:
+            self.discount = 0
         return self.price - self.discount
 
     def __str__(self):
@@ -32,14 +31,12 @@ class Goods:
 
 
 def on_sale_discount(order):
-    order.discount = order.price * 0.5
-    print("_________on_sale_discount", order.discount)
-    return
+    discount = order.price * 0.5
+    return discount
 
 
 def twenty_percent_discount(order):
     discount = order.price * 0.2
-    print("_______twenty_percent_discount", order.discount)
     return discount
 
 
@@ -47,10 +44,10 @@ if __name__ == "__main__":
     a = Goods(20000)
     print(a)
     # Price: 20000, price after discount: 20000
-    print(a.discount)
+    # print(a.discount)
     b = Goods(20000, discount_strategy=twenty_percent_discount)
     print(b)
-    print(b.discount)
+    # print(b.discount)
     # # Price: 20000, price after discount: 16000.0
     #
     print(Goods(20000, discount_strategy=on_sale_discount))
