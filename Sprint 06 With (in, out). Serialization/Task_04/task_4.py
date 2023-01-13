@@ -84,10 +84,10 @@ class Group:
 
 
 if __name__ == "__main__":
-    # ## ========================================
-    # user1 = Student.from_json("2020-01.json")
-    # print("===", user1)
-    # # Student2 from group2 (50.4): ['C++']
+    ## ========================================
+    user1 = Student.from_json("2020-01.json")
+    print("===", user1)
+    # Student2 from group2 (50.4): ['C++']
 
     # #
     ## ========================================
@@ -101,26 +101,26 @@ if __name__ == "__main__":
     #
     # import json
 
-    with open("2020_2.json") as read_file:
-        user2 = json.load(read_file)
-    print([str(Student(**item)) for item in user2])
+    # with open("2020_2.json") as read_file:
+    #     user2 = json.load(read_file)
+    # print([str(Student(**item)) for item in user2])
 
     ## ========================================
 
-    g1 = Group.create_group_from_file("2020_2.json")
-    print(g1)
-    g2 = Group.create_group_from_file("2020-01.json")
-    print(g2)
-    Group.serialize_to_json([g1, g2], "g1.json")
-    # # print_file("g1")
-    # # # [{"title": "2020_2",
-    # # #   "students": [{"full_name": "Student 1 from second Group", "avg_rank": 98, "courses": ["Python"]},
-    # # #                {"full_name": "Student 2 from second Group", "avg_rank": 70.34,
-    # # #                 "courses": ["Ruby", "Python", "Frontend development"]}]},
-    # # #  {"title": "2020-01", "students": [{"full_name": "Student2 from group2", "avg_rank": 50.4, "courses": ["C++"]}]}]
-
-    g1 = Group.create_group_from_file("2020_2.json")
-    print(g1)
+    # g1 = Group.create_group_from_file("2020_2.json")
+    # print(g1)
+    # g2 = Group.create_group_from_file("2020-01.json")
+    # print(g2)
+    # Group.serialize_to_json([g1, g2], "g1.json")
+    # # # print_file("g1")
+    # # # # [{"title": "2020_2",
+    # # # #   "students": [{"full_name": "Student 1 from second Group", "avg_rank": 98, "courses": ["Python"]},
+    # # # #                {"full_name": "Student 2 from second Group", "avg_rank": 70.34,
+    # # # #                 "courses": ["Ruby", "Python", "Frontend development"]}]},
+    # # # #  {"title": "2020-01", "students": [{"full_name": "Student2 from group2", "avg_rank": 50.4, "courses": ["C++"]}]}]
+    #
+    # g1 = Group.create_group_from_file("2020_2.json")
+    # print(g1)
     # 2020_2: ["Student 1 from second Group (98): ['Python']",
     #          "Student 2 from second Group (70.34): ['Ruby', 'Python', 'Frontend development']"]
 

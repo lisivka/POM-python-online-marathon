@@ -13,32 +13,22 @@ img_2.png
 """
 
 
-class Washing:
+class WashingMachine:
+    pass
+
     def wash(self):
         print("Washing...")
 
-
-class Rinsing:
     def rinse(self):
         print("Rinsing...")
 
-
-class Spinning:
     def spin(self):
         print("Spinning...")
 
-
-class WashingMachine:
-
-    def __init__(self):
-        self.wash = Washing()
-        self.rinse = Rinsing()
-        self.spin = Spinning()
-
     def startWashing(self):
-        self.wash.wash()
-        self.rinse.rinse()
-        self.spin.spin()
+        self.wash()
+        self.rinse()
+        self.spin()
 
 
 if __name__ == "__main__":
