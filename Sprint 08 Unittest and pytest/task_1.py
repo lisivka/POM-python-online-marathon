@@ -69,7 +69,8 @@ class CartTest(unittest.TestCase):
         self.assertEqual(actual, expected)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
     # print(count_tests > 0)
     # # True
     # # False
@@ -82,15 +83,14 @@ if __name__ == "__main__":
     # print(assertEqual)
     # # True
     # # False
-    products = (Product('p1', 10, 4),
-                Product('p2', 100, 5),
-                Product('p3', 200, 6),
-                Product('p4', 300, 7),
-                Product('p5', 400, 9),
-                Product('p6', 500, 10),
-                Product('p7', 1000, 20))
-    # print(products)
-    cart = Cart(products)
-    print(cart.get_total_price())
+    # products = (Product('p1', 10, 4),
+    #             Product('p2', 100, 5),
+    #             Product('p3', 200, 6),
+    #             Product('p4', 300, 7),
+    #             Product('p5', 400, 9),
+    #             Product('p6', 500, 10),
+    #             Product('p7', 1000, 20))
+    # # print(products)
+    # cart = Cart(products)
     # print(cart.get_total_price())
-    # # 24785.0
+    # 24785.0
