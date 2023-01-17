@@ -49,7 +49,7 @@ class Worker:
             percent, tax_base = tax_rates[limit]
             if limit[0] <= salary <= limit[1]:
                 tax = (salary - limit[0]) * percent / 100 + tax_base
-            else: 0
+            else: tax=0
         return float(tax)
 
 
