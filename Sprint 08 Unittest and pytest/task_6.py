@@ -16,6 +16,7 @@ Please, create class ParsesTest and write unittest for file_parser function uses
 """
 
 import unittest
+from unittest.mock import patch, mock_open
 
 
 def file_parser(file, find_str, replace_str=None):
@@ -30,10 +31,30 @@ def file_parser(file, find_str, replace_str=None):
     else:
         return f"Found {count} strings"
 
+class ParserTest(unittest.TestCase):
 
-# class ParserTest(unittest.TestCase):
-#     pass
+    str_f = """ This is string for testing in Marathon    """
 
-print(file_parser('file.txt', 'argument'))
-print(file_parser('file.txt', 'argumen', "argument"))
-# print(file_parser('parser.txt', 'better'))
+    def setUp(self):
+        self.file_parser = file_parser
+
+
+    def test_count_string(self):
+        with patch('builtins.open', mock_open(read_data=self.str_f)) as file:
+            result = self.file_parser(file, "test")
+            self.assertEqual(result, "Found 1 strings")
+            file.assert_called_once()
+
+    @patch("__main__.file_parser","Found 5 strings")
+    def test_count_string2(self):
+        with patch('builtins.open', mock_open(read_data=self.str_f)) as file:
+            result = self.file_parser(file, "i")
+            self.assertEqual(result, "Found 5 strings")
+            file.assert_called_once()
+
+
+
+if __name__ == '__main__':
+    print(file_parser('file.txt', 'argument'))
+    print(file_parser('file.txt', 'argumen', "argument"))
+    # print(file_parser('parser.txt', 'better'))
