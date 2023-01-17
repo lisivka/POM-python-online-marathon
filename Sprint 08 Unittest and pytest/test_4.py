@@ -68,27 +68,27 @@ class TriangleNotExistException(Exception):
 
 class Triangle:
     def __init__(self, sides: tuple):
-        self.sides = sides
-        self.area = self.get_area()
-
-    def not_valid_arg(self):
-        if not isinstance(self.sides, (list, tuple)) or len(self.sides) != 3:
-            if sum([not isinstance(side,int) for side in self.sides])>0:
-
+        if self.check_not_valid_arg(sides) and  self.check_not_exist_triangle(sides):
+            self.sides = sides
+            # self.area = self.get_area()
+            self.get_area()
+    def check_not_valid_arg(self,sides):
+        if not isinstance(sides, (list, tuple)) or len(sides) != 3:
+            raise TriangleNotValidArgumentException
+        for side in sides:
+            if not isinstance(side,(int,float)):
                 raise TriangleNotValidArgumentException
         else:
-            return
+            return True
 
-    def not_exist_triangle(self):
-        a, b, c = self.sides
+    def check_not_exist_triangle(self,sides):
+        a, b, c = sides
         if any((a <= 0, b <= 0, c <= 0, a + b <= c, b + c <= a, c + a <= b)):
             raise TriangleNotExistException
         else:
-            return
+            return True
 
     def get_area(self):
-        self.not_valid_arg()
-        self.not_exist_triangle()
         a, b, c = self.sides
         p = (a + b + c) / 2
         self.area = (p * (p - a) * (p - b) * (p - c)) ** 0.5
