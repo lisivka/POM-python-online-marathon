@@ -69,9 +69,51 @@ data = get_all_data(name_table=table, request_sql=request_sql)
 
 
 
-# name_dbase = "rossia_loser.db"
-# table = "total_losses"
-# request_sql = f"SELECT * FROM {table}"
-# data = get_all_data(name_table=table)
 
-# print(data)
+
+def get_name_collums(name_table="my_table") -> list:
+    try:
+        db = sqlite3.connect(name_dbase)
+        con = db.cursor()
+        print(f"Connected to SQLite")
+        get_data = list(con.execute(f"PRAGMA table_info({name_table})"))
+        print(f"get_data: {get_data}")
+        name_collums = [row[1] for row in get_data]
+        print(f"name_collums: {name_collums}")
+    except sqlite3.Error as error:
+        print(f"[-]ERROR  SQLite table=[ {name_table} ]  when requesting data = ", error)
+    finally:
+        if db:
+            db.close()
+            print(f"The SQLite connection is closed\n")
+        return name_collums
+
+
+def get_dataframe(name_table="my_table", request_sql=None) -> tuple:
+
+    if request_sql is None:
+        request_sql = f"SELECT * FROM {name_table}"
+    get_data = []
+    try:
+        db = sqlite3.connect(name_dbase)
+        con = db.cursor()
+        print(f"Connected to SQLite")
+        get_data = list(con.execute(request_sql))
+
+    except sqlite3.Error as error:
+        print(f"[-]ERROR  SQLite table=[ {name_table} ]  when requesting data = ", error)
+    finally:
+        if db:
+            db.close()
+            print(f"The SQLite connection is closed\n")
+        return get_data
+
+
+name_dbase = "rossia_loser.db"
+collums = get_name_collums(name_table="total_losses")
+
+df = get_dataframe(name_table="total_losses")
+print(collums)
+for row in df:
+    print(row)
+print(collums)

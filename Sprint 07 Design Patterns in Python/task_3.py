@@ -90,14 +90,19 @@ if __name__ == "__main__":
 
     for obj in objects:
         print("A {0} is a {1} vehicle".format(obj.name, obj.wheels()))
+    print("========================")
+    for obj in objects:
+        print(f'A {obj.name} is a {obj.wheels()} vehicle')
 
     # A MotorCycle is a TwoWheeler vehicle
     # A Truck is a EightWheeler vehicle
     # A Car is a FourWheeler vehicle
     print("========================")
-    print(objects)
-    print(objects[0].name)
-    print(objects[0].wheels())
+
+    # print(objects[0].name)
+    # print(objects[0].wheels())
     print("__________", motorCycle.__dict__, motorCycle.TwoWheeler())
     print("__________", truck.__dict__, truck.EightWheeler())
     print("__________", car.__dict__, car.FourWheeler())
+
+

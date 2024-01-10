@@ -20,7 +20,7 @@ Sample Output:
 """
 
 
-s = input().split()
+s = input("Введите числа через пробел: ").split()
 
 for num in s:
     print(float(num))

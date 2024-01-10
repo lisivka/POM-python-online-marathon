@@ -19,9 +19,10 @@ Start 2022-12-12
 * Sprint 16. Django Forms
 * Sprint 17. Django REST Framework.
 * Sprint 18. Virtualization. Docker image
-* Additional Resources. Heroku deploy
-* Additional Resources[JavaScript]. Data types. Arrays. Functions. Exceptions
-* Additional Resources[JavaScript]. Features ES 2015 - 2019
+
+* Sprint 20. Additional Resources[JavaScript]. Data types. Arrays. 
+  Functions. Exceptions
+* Sprint 21. Additional Resources[JavaScript]. Features ES 2015 - 2019
 * Additional Resources[JavaScript]. Keyword this & Data Structures
 * Final test
-* Additional Resources. English course
+
