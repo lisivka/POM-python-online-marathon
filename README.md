@@ -1,6 +1,6 @@
 # Python Online Marathon 2022
 Start 2022-12-12
-* Sprint 0. Self preparation
+* Sprint 0. Self-preparation
 * Sprint 01. Introduction to Programming with Python.
 * Sprint 02. String. Regular Expressions
 * Sprint 03. Functions
@@ -18,7 +18,7 @@ Start 2022-12-12
 * Sprint 15. Django Admin
 * Sprint 16. Django Forms
 * [Sprint 17. Django REST Framework.](https://github.com/lisivka/POM-django-rest.git)
-* Sprint 18. Virtualization. Docker image
+* [Sprint 18. Virtualization. Docker image](https://github.com/lisivka/POM2022-Sprint18-docker)
 
 * Sprint 20. Additional Resources[JavaScript]. Data types. Arrays. 
   Functions. Exceptions
